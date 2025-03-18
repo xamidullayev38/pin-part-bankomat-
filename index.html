@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pin</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+    }
+    body{
+        background: #000;
+        color: white;
+    }
+    .container{
+        max-width: 1280px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+    .pin{
+        width: 600px;
+        height: 500px;
+        margin: 0 auto;
+        margin-top: 100px;  
+        padding: 25px;
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 20px 10px aqua;
+    }
+    .pin__interface{
+        width: 80%;
+        height: 76px;
+        font-size: 45px;
+        background: none;
+        border: 2px solid aqua;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 40px;
+        color: aqua;
+    }
+    .pin__keypad{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+    }
+    .pin__keypad__row{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 25px;
+    }
+    .pin__keypad__key {
+        width: 25%;
+        height: 50px;
+        color: aqua;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .pin__keypad__key:hover{
+        box-shadow: 0 0 15px 10px aqua;
+
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="pin">
+            <div class="pin__interface" ></div>
+
+            <div class="pin__keypad">
+                <div class="pin__keypad__row">
+                    <button class="pin__keypad__key" id="1">1</button>
+                    <button class="pin__keypad__key" id="2">2</button>
+                    <button class="pin__keypad__key" id="3">3</button>
+                    <button class="pin__keypad__key" >⌫</button>
+                </div>
+                <div class="pin__keypad__row">
+                    <button class="pin__keypad__key" id="4">4</button>
+                    <button class="pin__keypad__key" id="5">5</button>
+                    <button class="pin__keypad__key" id="6">6</button>
+                    <button class="pin__keypad__key" >C</button>
+                </div>
+                <div class="pin__keypad__row">
+                    <button class="pin__keypad__key" id="7">7</button>
+                    <button class="pin__keypad__key" id="8">8</button>
+                    <button class="pin__keypad__key" id="9">9</button>
+                    <button class="pin__keypad__key" >↵</button>
+                </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        let interface = document.querySelector('.pin__interface');
+        let keypad = document.querySelectorAll('.pin__keypad__key');
+
+        keypad.forEach(key => {
+            key.addEventListener('click', () => {
+                if ( key.textContent === 'C') {
+                    clearInterface(interface)
+                }
+                else if (key.textContent === '⌫') {
+                    delFunc(interface)
+                }
+                else if (key.textContent === '↵') {
+                    alert('You are welcome ;)');
+                }
+                else if (interface.innerHTML.length < 4) {
+                    interface.innerHTML += key.textContent;
+                    pasView(interface);
+                }
+            })
+
+        });
+        // functions
+        function pasView(elem){
+            let k = elem.textContent.length
+            for (let i = 0; i < k; i++) {
+                elem.textContent = elem.textContent.replace(elem.textContent[i], "*")
+            }
+        }
+        function clearInterface(elem){
+            elem.innerHTML = '';
+            console.log('cl interface');
+            
+        }
+        function delFunc(elem){
+            elem.textContent = elem.textContent.slice(0,-1)
+        }
+
+    </script>
+</body>
+</html>
