@@ -10,7 +10,17 @@ let interface = document.querySelector('.pin__interface');
                     delFunc(interface)
                 }
                 else if (key.textContent === '↵') {
-                    alert('You are welcome ;)');
+                    if(interface.innerHTML.length === 4){
+                        alert('You are welcome ;)');
+                        clearInterface(interface)
+
+                    }else if (interface.innerHTML.length === 0) {
+                        return ''
+                    }
+                    else{
+                        alert('Incorrect PIN');
+                        clearInterface(interface)
+                    }
                 }
                 else if (interface.innerHTML.length < 4) {
                     interface.innerHTML += key.textContent;
